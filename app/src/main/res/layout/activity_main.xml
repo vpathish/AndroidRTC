@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/image_vw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitEnd"
+        android:src="@drawable/main_img"
+        android:layout_marginBottom="-25dp"/>
+
+    <TextView
+        android:layout_marginTop="95dp"
+        android:id="@+id/welcome_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hurray! Enjoy using the App Now..."
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <Button
+        android:id="@+id/start_stream_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcome_txt"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:background="#ff725e"
+        android:fontFamily="@font/poppins_regular"
+        android:onClick="NxtActivity"
+        android:padding="15dp"
+        android:text="Start Streaming"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:elevation="15dp"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
