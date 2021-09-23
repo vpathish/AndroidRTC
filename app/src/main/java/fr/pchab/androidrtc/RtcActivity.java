@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Toast;
@@ -230,5 +231,11 @@ public class RtcActivity extends Activity implements WebRtcClient.RtcListener {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionChecker.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public void endcall(View V)
+    {
+        finishAffinity();
+        System.exit(0);
     }
 }
