@@ -38,7 +38,7 @@
         android:fontFamily="@font/poppins_regular"
         android:onClick="NxtActivity"
         android:padding="15dp"
-        android:text="Start Streaming"
+        android:text="Preview Stream"
         android:textColor="#fff"
         android:textSize="16sp"
         android:textStyle="bold"

@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import org.json.JSONException;
 import org.webrtc.MediaStream;
@@ -47,6 +48,7 @@ public class RtcActivity extends Activity implements WebRtcClient.RtcListener {
     private WebRtcClient client;
     private String mSocketAddress;
     private String callerId;
+    int camoption, flashoption;
 
     private static final String[] RequiredPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
     protected PermissionChecker permissionChecker = new PermissionChecker();
@@ -85,6 +87,9 @@ public class RtcActivity extends Activity implements WebRtcClient.RtcListener {
 
         final Intent intent = getIntent();
         final String action = intent.getAction();
+        camoption = intent.getExtras().getInt("camera",0);
+        flashoption = intent.getExtras().getInt("flash",0);
+
 
         if (Intent.ACTION_VIEW.equals(action)) {
             final List<String> segments = intent.getData().getPathSegments();
@@ -178,7 +183,7 @@ public class RtcActivity extends Activity implements WebRtcClient.RtcListener {
     public void startCam() {
         // Camera settings
         if (PermissionChecker.hasPermissions(this, RequiredPermissions)) {
-            client.start("android_test");
+            client.start("android_test", camoption, flashoption);
         }
     }
 

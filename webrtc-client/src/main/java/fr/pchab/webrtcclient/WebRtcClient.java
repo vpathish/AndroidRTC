@@ -349,8 +349,8 @@ public class WebRtcClient {
      *
      * @param name client name
      */
-    public void start(String name) {
-        setCamera();
+    public void start(String name, int camoption, int flashoption) {
+        setCamera(camoption,flashoption);
         try {
             JSONObject message = new JSONObject();
             message.put("name", name);
@@ -360,7 +360,7 @@ public class WebRtcClient {
         }
     }
 
-    private void setCamera() {
+    private void setCamera(int camoption, int flashoption) {
         localMS = factory.createLocalMediaStream("ARDAMS");
         if (pcParams.videoCallEnabled) {
             MediaConstraints videoConstraints = new MediaConstraints();
@@ -369,7 +369,7 @@ public class WebRtcClient {
             videoConstraints.mandatory.add(new MediaConstraints.KeyValuePair("maxFrameRate", Integer.toString(pcParams.videoFps)));
             videoConstraints.mandatory.add(new MediaConstraints.KeyValuePair("minFrameRate", Integer.toString(pcParams.videoFps)));
 
-            videoSource = factory.createVideoSource(getVideoCapturer(), videoConstraints);
+            videoSource = factory.createVideoSource(getVideoCapturer(camoption), videoConstraints);
             localMS.addTrack(factory.createVideoTrack("ARDAMSv0", videoSource));
         }
 
@@ -379,8 +379,12 @@ public class WebRtcClient {
         mListener.onLocalStream(localMS);
     }
 
-    private VideoCapturer getVideoCapturer() {
-        String frontCameraDeviceName = VideoCapturerAndroid.getNameOfFrontFacingDevice();
-        return VideoCapturerAndroid.create(frontCameraDeviceName);
+    private VideoCapturer getVideoCapturer(int camoption) {
+        String CameraDeviceName;
+        if (camoption ==1)
+            CameraDeviceName = VideoCapturerAndroid.getNameOfFrontFacingDevice();
+        else
+            CameraDeviceName = VideoCapturerAndroid.getNameOfBackFacingDevice();
+        return VideoCapturerAndroid.create(CameraDeviceName);
     }
 }
